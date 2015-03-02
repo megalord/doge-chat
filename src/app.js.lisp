@@ -59,8 +59,8 @@
                        (+ "ws://"
                           (@ location hostname)
                           ":"
-                          (1+ (parse-int (@ location port)))
-                          "/socket"))))
+                          (or (1+ (parse-int (@ location port))) "")
+                          "/doge-chat/socket"))))
           (setf (@ socket onopen) activate-socket)
           (setf (@ socket onclose) deactivate-socket))
 

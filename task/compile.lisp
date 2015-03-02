@@ -5,6 +5,7 @@
   (:export :watch
            :compile
            :map-files
+           :compile-all
            :relative-to))
 
 (in-package :task.compile)
@@ -67,6 +68,9 @@
                                          (file-write-date path)))
                      (format t "File changed: ~a~%" (namestring path))
                      (funcall fn path))))))
+
+(defun compile-all ()
+  (map-files "src/**/*.lisp" #'load))
 
 (defun watch ()
   (progn
